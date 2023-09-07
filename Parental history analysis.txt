@@ -1,0 +1,8 @@
+library(epiDisplay)
+Model=glm(proxy~Inferior+age+I(age^2)+sex+site1+site2+ICV+college+apoe4_count,data=data,family=binomial())
+summary (Model)
+logistic.display(Model)
+
+Model2=glm(proxy~Inferior+age+I(age^2)+sex+site1+site2+ICV+college+apoe4_count+data$parentdeath,data=data,family=binomial())
+summary (Model2)
+logistic.display(Model2) 

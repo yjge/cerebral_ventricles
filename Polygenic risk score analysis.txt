@@ -1,0 +1,3 @@
+#We leveraged the standard polygenic risk scores (PRS) for AD, PD, BP, and SCZ provided by UKB in the PRS Release (Category 301).
+model=lm(phenotype~age_imag+I(age_imag^2)+sex+site1+site2+ICV+PC1+PC2+PC3+PC4+PC5+PC6+PC7+PC8+PC9+PC10+disease_PRS, data=data)
+model=summary(model)

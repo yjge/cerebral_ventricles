@@ -1,0 +1,26 @@
+#####1. Common variant-based heritability #####
+gcta \
+--grm GRM \
+--pheno phenotype.txt \
+--mpheno 1 \
+--reml \
+--qcovar qcovar.txt \
+--covar covar.txt \
+--out phenotype1_h2
+
+
+#####2. Rare variant-based heritability #####
+library(bhr)
+baseline <- read.table("ms_baseline_oe5.txt")
+BHR_aggregate<-BHR(mode = "aggregate", 
+  ss_list = list(sumstats_ultrarare_pLoF,sumstats_rare_pLoF,sumstats_ultrarare_missense,sumstats_rare_missense)),
+  trait_list = list(pheno_name),
+  annotations = list(baseline))
+
+
+#####3. Family-based heritability #####
+library("geepack")
+library("mets")
+source('./GEE2-Heritability-Twins-master/twinACEmodels.R')
+NACE=twinlm(phenotype~1,data=data,id="famid",zyg="zygosity",DZ=0)
+summary(NACE)$acde

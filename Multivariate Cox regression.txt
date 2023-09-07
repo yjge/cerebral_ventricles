@@ -1,0 +1,3 @@
+library(survival)
+cox <- coxph(Surv(years, dementia_status) ~ phenotype+hippocampus+age+I(age^2)+sex+site1+site2+ICV+college+apoe4_count, data = data).
+cox=summary(cox)
